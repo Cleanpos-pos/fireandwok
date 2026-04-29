@@ -1,0 +1,41 @@
+{
+  "name": "Fire & Wok Peterborough",
+  "short_name": "Fire & Wok",
+  "description": "Authentic Chinese restaurant & takeaway in Peterborough. Dine in, collect or order delivery.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0b0b0b",
+  "theme_color": "#0b0b0b",
+  "lang": "en-GB",
+  "categories": ["food", "restaurants", "lifestyle"],
+  "icons": [
+    {
+      "src": "/hero_image.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Order Online",
+      "short_name": "Order",
+      "url": "/?ref=pwa-order#menu",
+      "description": "Order Chinese delivery or collection online"
+    },
+    {
+      "name": "Book a Table",
+      "short_name": "Book",
+      "url": "/?ref=pwa-book#contact",
+      "description": "Reserve a table at Fire & Wok"
+    }
+  ]
+}
