@@ -3,25 +3,29 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.fireandwok.co.uk/</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://www.fireandwok.co.uk/wp-content/uploads/2025/07/faw-1.jpg</image:loc>
+      <image:loc>https://www.fireandwok.co.uk/img/gallery/faw-1.jpg</image:loc>
       <image:title>Fire &amp; Wok Peterborough — wok-fired Chinese cuisine</image:title>
       <image:caption>Fire &amp; Wok dining room and signature dishes at 36 Cowgate, Peterborough.</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://www.fireandwok.co.uk/wp-content/uploads/2025/07/IMG-20250704-WA0021.jpg</image:loc>
+      <image:loc>https://www.fireandwok.co.uk/img/gallery/photo-21.jpg</image:loc>
       <image:title>Aromatic crispy duck</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://www.fireandwok.co.uk/wp-content/uploads/2025/07/IMG-20250704-WA0022.jpg</image:loc>
+      <image:loc>https://www.fireandwok.co.uk/img/gallery/photo-22.jpg</image:loc>
       <image:title>Chef special wok dish</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://www.fireandwok.co.uk/wp-content/uploads/2025/07/IMG-20250704-WA0023.jpg</image:loc>
+      <image:loc>https://www.fireandwok.co.uk/img/gallery/photo-23.jpg</image:loc>
       <image:title>Wok stir-fry plate</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fireandwok.co.uk/img/gallery/photo-24.jpg</image:loc>
+      <image:title>Sizzling plate Chinese main</image:title>
     </image:image>
   </url>
 </urlset>

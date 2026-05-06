@@ -24,17 +24,17 @@ const PHONE = '+441733813001';
 const PHONE_LABEL = '+44 1733 813001';
 const ADDRESS = '36 Cowgate, Peterborough PE1 1NA';
 
-type GalleryImage = { src: string; tag: string; alt: string };
+type GalleryImage = { src: string; tag: string; alt: string; w: number; h: number };
 const GALLERY: GalleryImage[] = [
-  { src: 'https://www.fireandwok.co.uk/wp-content/uploads/2025/07/faw-1.jpg', tag: 'The Dining Room', alt: 'Fire & Wok Peterborough dining room with wok-fired dishes on the table' },
-  { src: 'https://www.fireandwok.co.uk/wp-content/uploads/2025/07/IMG-20250704-WA0023.jpg', tag: 'Wok Stir-Fry', alt: 'Wok stir-fried Chinese dish at Fire & Wok Peterborough' },
-  { src: 'https://www.fireandwok.co.uk/wp-content/uploads/2025/07/IMG-20250704-WA0022.jpg', tag: 'Chef Special', alt: 'Chef special main course plated at Fire & Wok' },
-  { src: 'https://www.fireandwok.co.uk/wp-content/uploads/2025/07/IMG-20250704-WA0021.jpg', tag: 'Aromatic Duck', alt: 'Aromatic crispy duck served with pancakes and hoisin at Fire & Wok' },
-  { src: 'https://www.fireandwok.co.uk/wp-content/uploads/2025/07/IMG-20250704-WA0024.jpg', tag: 'Sizzling Plate', alt: 'Sizzling plate Chinese main dish at Fire & Wok Peterborough' },
-  { src: 'https://www.fireandwok.co.uk/wp-content/uploads/2025/07/IMG-20250704-WA0028.jpg', tag: 'House Favourite', alt: 'House favourite Cantonese dish at Fire & Wok' },
-  { src: 'https://www.fireandwok.co.uk/wp-content/uploads/2025/07/IMG-20250704-WA0027.jpg', tag: 'Sweet & Sour', alt: 'Sweet and sour chicken at Fire & Wok Peterborough' },
-  { src: 'https://www.fireandwok.co.uk/wp-content/uploads/2025/07/IMG-20250704-WA0026.jpg', tag: 'Salt & Pepper', alt: 'Salt and pepper dish at Fire & Wok Peterborough' },
-  { src: 'https://www.fireandwok.co.uk/wp-content/uploads/2025/07/IMG-20250704-WA0025.jpg', tag: 'Hand-tossed', alt: 'Hand-tossed wok noodles at Fire & Wok Peterborough' },
+  { src: '/img/gallery/faw-1.jpg',    tag: 'The Dining Room',  alt: 'Fire & Wok Peterborough dining room with wok-fired dishes on the table',           w: 1600, h: 1200 },
+  { src: '/img/gallery/photo-23.jpg', tag: 'Wok Stir-Fry',     alt: 'Wok-fired Chinese stir-fry dish at Fire & Wok Peterborough',                        w: 1200, h: 1600 },
+  { src: '/img/gallery/photo-22.jpg', tag: 'Chef Special',     alt: 'Chef special main course plated at Fire & Wok',                                     w: 1200, h: 1600 },
+  { src: '/img/gallery/photo-21.jpg', tag: 'Aromatic Duck',    alt: 'Aromatic crispy duck served with pancakes and hoisin at Fire & Wok',                w: 1200, h: 1600 },
+  { src: '/img/gallery/photo-24.jpg', tag: 'Sizzling Plate',   alt: 'Sizzling plate Chinese main dish at Fire & Wok Peterborough',                       w: 1600, h: 1200 },
+  { src: '/img/gallery/photo-28.jpg', tag: 'House Favourite',  alt: 'House favourite Cantonese dish at Fire & Wok',                                      w: 1200, h: 1600 },
+  { src: '/img/gallery/photo-27.jpg', tag: 'Sweet & Sour',     alt: 'Sweet and sour chicken at Fire & Wok Peterborough',                                 w: 1200, h: 1600 },
+  { src: '/img/gallery/photo-26.jpg', tag: 'Salt & Pepper',    alt: 'Salt and pepper dish at Fire & Wok Peterborough',                                   w: 1200, h: 1600 },
+  { src: '/img/gallery/photo-25.jpg', tag: 'Hand-tossed',      alt: 'Hand-tossed wok noodles at Fire & Wok Peterborough',                                w: 1200, h: 1600 },
 ];
 
 type MenuItem = { name: string; price: string; note?: string; veg?: boolean };
@@ -527,8 +527,8 @@ function Gallery() {
                 alt={GALLERY[i].alt}
                 loading="lazy"
                 decoding="async"
-                width={1200}
-                height={800}
+                width={GALLERY[i].w}
+                height={GALLERY[i].h}
               />
               <span className="fw-tile-tag">{GALLERY[i].tag}</span>
             </button>
@@ -564,7 +564,7 @@ function Gallery() {
                 </div>
               </div>
               <div className="fw-lightbox__img-wrap">
-                <img src={GALLERY[active].src} alt={GALLERY[active].alt} width={1600} height={1067} />
+                <img src={GALLERY[active].src} alt={GALLERY[active].alt} width={GALLERY[active].w} height={GALLERY[active].h} />
               </div>
             </motion.div>
           </motion.div>
