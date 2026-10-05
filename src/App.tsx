@@ -37,24 +37,96 @@ const GALLERY: GalleryImage[] = [
   { src: '/img/gallery/photo-25.jpg', tag: 'Hand-tossed',      alt: 'Hand-tossed wok noodles at Fire & Wok Peterborough',                                w: 1200, h: 1600 },
 ];
 
-type MenuItem = { name: string; price: string; note?: string; veg?: boolean };
-type MenuCategory = { title: string; items: MenuItem[] };
+type MenuItem = {
+  code?: string;      // dish number as printed on the menu, e.g. "C7"
+  name: string;
+  price: string;
+  note?: string;      // ingredients / portion info, shown under the name
+  veg?: boolean;      // vegetarian
+  heat?: 1 | 2;       // chilli rating: 1 = mild (I), 2 = hot (II)
+  nuts?: boolean;     // contains nuts
+};
+type MenuCategory = { title: string; note?: string; items: MenuItem[] };
 
 const MENU: Record<string, { label: string; categories: MenuCategory[] }> = {
   starters: {
     label: 'Starters',
     categories: [
       {
-        title: 'Appetisers',
+        title: 'Fire & Wok Mixed Appetisers',
+        note: 'Minimum order for 2 people',
         items: [
-          { name: 'Spring rolls', price: '£5.50', note: '5 pieces, hand-rolled' },
-          { name: 'Crispy seaweed', price: '£5.50' },
-          { name: 'Chicken salt & pepper', price: '£6.50' },
-          { name: 'Crispy honey sesame chicken', price: '£6.50' },
-          { name: 'Chicken satay on skewers', price: '£7.50', note: 'house peanut sauce' },
-          { name: 'Sesame prawn toast', price: '£7.50', note: '4 pieces' },
-          { name: 'Honey spare ribs', price: '£8.90' },
-          { name: 'Salt & pepper tofu', price: '£7.50', veg: true },
+          { name: 'Mixed appetiser platter', price: '£15.00 pp', nuts: true, note: 'Prawn toast, Peking ribs, smoked shredded chicken, chicken satay, vegetable spring rolls, crispy seaweed' },
+        ],
+      },
+      {
+        title: 'Poultry',
+        items: [
+          { code: '1', name: 'Spring rolls', price: '£5.50', note: '5 pieces' },
+          { code: '2', name: 'Crispy honey sesame chicken', price: '£6.50' },
+          { code: '3', name: 'Chicken salt & pepper', price: '£6.50', heat: 1 },
+          { code: '4', name: 'Chicken satay on skewers', price: '£7.50', nuts: true },
+          { code: '5', name: 'Chicken balls with sweet & sour sauce', price: '£7.50' },
+          { code: '6', name: 'Smoked shredded chicken', price: '£7.00' },
+          { code: '7', name: 'Salt & pepper chicken wings', price: '£6.50', heat: 1 },
+          { code: '8', name: 'Crispy honey sesame wings', price: '£6.50' },
+          { code: '9', name: 'BBQ chicken wings', price: '£6.50' },
+          { code: '10', name: 'Mar Lak chilli chicken', price: '£6.50', heat: 1, note: 'Garlic, chilli, onion, bell pepper' },
+          { code: '11', name: 'Sweet & sour chilli chicken', price: '£6.50', heat: 2 },
+          { code: '12', name: 'Sweet & sour chilli wings', price: '£6.50', heat: 2 },
+        ],
+      },
+      {
+        title: 'Seafood',
+        items: [
+          { code: '13', name: 'Prawn crackers', price: '£2.00' },
+          { code: '14', name: 'Calamari in chilli pepper', price: '£7.50', heat: 1, note: 'Cooked with a touch of garlic, bell pepper and fresh chilli' },
+          { code: '15', name: 'Mar Lak chilli king prawn', price: '£8.50', heat: 1, note: 'Garlic, chilli, onion, bell pepper' },
+          { code: '16', name: 'Salt & pepper prawn', price: '£8.50', heat: 1 },
+          { code: '17', name: 'Sesame prawn toast', price: '£7.50', note: '4 pieces' },
+          { code: '18', name: 'Mar Lak chilli fish', price: '£8.50', heat: 1, note: 'Garlic, chilli, onion, bell pepper' },
+          { code: '19', name: 'Crispy honey sesame prawn', price: '£8.50' },
+          { code: '20', name: 'Sweet & sour chilli prawn', price: '£8.50', heat: 2 },
+          { code: '21', name: 'Sweet & sour chilli fish', price: '£8.50', heat: 2 },
+          { code: '22', name: 'Fish cake', price: '£7.50' },
+        ],
+      },
+      {
+        title: 'Pork',
+        items: [
+          { code: '23', name: 'Honey spare ribs', price: '£8.90' },
+          { code: '24', name: 'Barbecue spare ribs', price: '£8.90' },
+          { code: '25', name: 'Peking spare ribs', price: '£8.90' },
+          { code: '26', name: 'Szechuan spare ribs', price: '£8.90', heat: 2 },
+          { code: '27', name: 'Salt & pepper ribs', price: '£8.90', heat: 1 },
+          { code: '28', name: 'Sweet & sour chilli ribs', price: '£8.90', heat: 2 },
+          { code: '29', name: 'Pork belly', price: '£8.90', note: 'Onion, scallion, ginger' },
+          { code: '30', name: 'Steamed pork dumplings', price: '£6.50', note: '5 pieces' },
+          { code: '31', name: 'Grilled pork dumplings', price: '£6.50', note: '5 pieces' },
+        ],
+      },
+      {
+        title: 'Vegetables',
+        items: [
+          { code: '32', name: 'Salt & pepper tofu', price: '£7.50', veg: true, heat: 1 },
+          { code: '33', name: 'Sweet & sour chilli tofu', price: '£7.50', veg: true, heat: 2 },
+          { code: '34', name: 'Mar Lak tofu', price: '£7.50', veg: true, heat: 1 },
+          { code: '35', name: 'Mock chicken satay', price: '£7.90', veg: true, heat: 1, nuts: true },
+          { code: '36', name: 'Vegetable spring rolls', price: '£5.00', veg: true, note: '5 pieces' },
+          { code: '37', name: 'Crispy seaweed', price: '£5.50', veg: true },
+          { code: '38', name: 'Steamed vegetable dumplings', price: '£6.50', veg: true, note: '5 pieces' },
+          { code: '39', name: 'Grilled vegetable dumplings', price: '£6.50', veg: true, note: '5 pieces' },
+          { code: '40', name: 'Smoked shredded mock duck', price: '£7.90', veg: true },
+          { code: '41', name: 'Sesame toast', price: '£6.00', veg: true, note: '4 pieces' },
+          { code: '42', name: 'Salt & pepper chips', price: '£5.50', veg: true, heat: 1 },
+        ],
+      },
+      {
+        title: 'Soups',
+        items: [
+          { code: '43', name: 'Hot & sour soup (vegetable)', price: '£5.50', veg: true, heat: 1 },
+          { code: '44', name: 'Hot & sour soup (chicken)', price: '£5.50', heat: 1 },
+          { code: '45', name: 'Chicken & corn soup', price: '£5.50' },
         ],
       },
     ],
@@ -65,14 +137,18 @@ const MENU: Record<string, { label: string; categories: MenuCategory[] }> = {
       {
         title: 'Main Course – Poultry',
         items: [
-          { name: 'Sweet & sour harmony chicken', price: '£9.50' },
-          { name: 'Chicken with black bean sauce', price: '£9.50' },
-          { name: 'Szechuan spice chicken', price: '£9.50', note: 'spicy' },
-          { name: 'Kung Pao blaze chicken', price: '£9.50', note: 'spicy' },
-          { name: 'Cashew nut chicken', price: '£10.50' },
-          { name: 'Fire & Wok chicken curry', price: '£9.50' },
-          { name: 'Chicken Pok Choy delight', price: '£9.50' },
-          { name: 'Chicken with mushrooms', price: '£9.50' },
+          { code: 'C1', name: 'Sweet & sour harmony chicken', price: '£9.50', note: 'Sweet & sour with a twist of Oriental spices · onion, pineapple, carrot, zucchini, bell pepper' },
+          { code: 'C2', name: 'Kung Pao blaze chicken', price: '£9.50', heat: 2, nuts: true, note: 'Peanuts, dry chillies, bell pepper, onion, zucchini, black fungus in Kung Pao sauce' },
+          { code: 'C3', name: 'Chicken with black bean symphony', price: '£9.50', note: 'Rich black bean sauce with bell pepper, mushroom and onion' },
+          { code: 'C4', name: 'Szechuan spice chicken', price: '£9.50', heat: 2, note: 'Bell pepper, onion, chilli and bamboo shoot in Szechuan sauce' },
+          { code: 'C5', name: 'Chicken Pok Choy delight', price: '£9.50', note: 'Pok choy and celery in light soya sauce' },
+          { code: 'C6', name: 'Chicken in satay sauce', price: '£9.50', heat: 2, nuts: true, note: 'Onion, bell pepper, mushroom in satay sauce' },
+          { code: 'C7', name: 'Cashew nut chicken', price: '£10.50', nuts: true, note: 'Onion, bell pepper, broccoli, water chestnut, celery' },
+          { code: 'C8', name: 'Stir-fried chicken with vegetables', price: '£9.50', note: 'Chinese cabbage, onion, celery, water chestnut' },
+          { code: 'C9', name: 'Chicken in teriyaki sauce', price: '£9.50', note: 'Onion, bell pepper, broccoli in teriyaki sauce' },
+          { code: 'C10', name: 'Chicken black pepper charm', price: '£9.50', heat: 1, note: 'Black pepper, onion, bell pepper, celery' },
+          { code: 'C16', name: 'Fire & Wok chicken curry', price: '£9.50', heat: 1, note: 'Fragrant blend of rich spices with mushroom, onion and green peas' },
+          { code: 'C17', name: 'Chicken in coconut curry sauce', price: '£9.50', note: 'Bell pepper, mushroom, onion' },
         ],
       },
     ],
@@ -83,12 +159,21 @@ const MENU: Record<string, { label: string; categories: MenuCategory[] }> = {
       {
         title: 'Main Course – Beef',
         items: [
-          { name: 'Beef with black bean sauce', price: '£10.50' },
-          { name: 'Szechuan spice beef', price: '£10.50', note: 'spicy' },
-          { name: 'Kung Pao blaze beef', price: '£10.50', note: 'spicy' },
-          { name: 'Black pepper beef charm', price: '£10.50' },
-          { name: 'Scallion beef steak', price: '£11.50' },
-          { name: 'Beef with ginger & spring onion', price: '£10.50' },
+          { code: 'B2', name: 'Kung Pao blaze beef', price: '£10.50', heat: 2, nuts: true, note: 'Peanuts, bell pepper, onion, zucchini, black fungus in Kung Pao sauce' },
+          { code: 'B3', name: 'Beef with black bean symphony', price: '£10.50', note: 'Rich black bean sauce with bell pepper, mushroom and onion' },
+          { code: 'B4', name: 'Szechuan spice beef', price: '£10.50', heat: 2, note: 'Bell pepper, onion, chilli and bamboo shoot in Szechuan sauce' },
+          { code: 'B5', name: 'Beef Pok Choy delight', price: '£10.50', note: 'Pok choy and celery in light soya sauce' },
+          { code: 'B6', name: 'Beef in satay sauce', price: '£10.50', heat: 1, nuts: true, note: 'Onion, bell pepper, mushroom in satay sauce' },
+          { code: 'B11', name: 'Black pepper beef charm', price: '£10.50', heat: 1, note: 'Tender beef, black pepper, onion, bell pepper' },
+          { code: 'B12', name: 'Broccoli beef medley', price: '£10.50', note: 'Classic dish of beef and broccoli in a savoury sauce' },
+          { code: 'B13', name: 'Mongolian beef', price: '£10.50', heat: 1, note: 'Ginger, garlic, onion, bell pepper' },
+          { code: 'B14', name: 'Scallion beef steak', price: '£10.50', note: 'Stir-fried with ginger, onion, celery and scallion' },
+          { code: 'B15', name: 'Shredded beef in chilli', price: '£10.50', heat: 1, note: 'Onion, carrot, red chilli in chilli sauce' },
+          { code: 'B16', name: 'Fire & Wok beef curry', price: '£10.50', heat: 1, note: 'Fragrant blend of rich spices with mushroom, onion and green peas' },
+          { code: 'B17', name: 'Beef in coconut curry sauce', price: '£10.50', note: 'Bell pepper, mushroom, onion' },
+          { code: 'B18', name: 'Shredded beef in honey chilli sauce', price: '£9.50', heat: 1, note: 'Onion, carrot, red chilli' },
+          { code: 'B19', name: 'Shredded beef in Peking sauce', price: '£10.50', note: 'Carrot and onion in Peking sauce' },
+          { code: 'B20', name: 'Shredded beef in Kung Pao sauce', price: '£10.50', heat: 2, nuts: true, note: 'Peanuts, bell pepper, onion, zucchini, black fungus in Kung Pao sauce' },
         ],
       },
     ],
@@ -99,10 +184,15 @@ const MENU: Record<string, { label: string; categories: MenuCategory[] }> = {
       {
         title: 'Main Course – Pork',
         items: [
-          { name: 'Sweet & sour pork', price: '£9.50' },
-          { name: 'Pork in satay sauce', price: '£10.50' },
-          { name: 'Char siu BBQ pork', price: '£10.50' },
-          { name: 'Salt & pepper pork', price: '£10.50' },
+          { code: 'P1', name: 'Sweet & sour harmony pork', price: '£10.50', note: 'Sweet & sour with a twist of Oriental spices · onion, pineapple, carrot, zucchini, bell pepper' },
+          { code: 'P2', name: 'Kung Pao blaze pork', price: '£10.50', heat: 1, nuts: true, note: 'Peanuts, bell pepper, onion, zucchini, black fungus in Kung Pao sauce' },
+          { code: 'P3', name: 'Pork with black bean symphony', price: '£10.50', note: 'Rich black bean sauce with bell pepper, mushroom and onion' },
+          { code: 'P4', name: 'Szechuan spice pork', price: '£10.50', heat: 2, note: 'Bell pepper, onion, chilli and bamboo shoot in Szechuan sauce' },
+          { code: 'P5', name: 'Pork Pok Choy delight', price: '£10.50', note: 'Pok choy and celery in light soya sauce' },
+          { code: 'P6', name: 'Pork in satay sauce', price: '£10.50', heat: 1, nuts: true, note: 'Onion, bell pepper, mushroom in satay sauce' },
+          { code: 'P7', name: 'Cashew nut pork', price: '£10.50', nuts: true, note: 'Onion, bell pepper, broccoli, water chestnut, celery' },
+          { code: 'P16', name: 'Fire & Wok pork curry', price: '£10.50', heat: 1, note: 'Fragrant blend of rich spices with mushroom, onion and green peas' },
+          { code: 'P17', name: 'Pork in coconut curry sauce', price: '£10.50', note: 'Bell pepper, mushroom, onion' },
         ],
       },
     ],
@@ -113,12 +203,18 @@ const MENU: Record<string, { label: string; categories: MenuCategory[] }> = {
       {
         title: 'Main Course – Seafood',
         items: [
-          { name: 'King prawns with cashew nuts', price: '£12.50' },
-          { name: 'Salt & pepper king prawns', price: '£12.50' },
-          { name: 'King prawns with black bean sauce', price: '£12.50' },
-          { name: 'Sweet & sour king prawns', price: '£12.50' },
-          { name: 'Squid salt & pepper', price: '£11.50' },
-          { name: 'Prawns in Szechuan sauce', price: '£12.50', note: 'spicy' },
+          { code: 'S1', name: 'Sweet & sour harmony prawn', price: '£11.50', note: 'Sweet & sour with a twist of Oriental spices · onion, pineapple, carrot, zucchini, bell pepper' },
+          { code: 'S2', name: 'Kung Pao fish blaze', price: '£10.50', heat: 2, nuts: true, note: 'Peanuts, dry chillies, bell pepper, onion, zucchini, black fungus in Kung Pao sauce' },
+          { code: 'S3', name: 'Mussels with black bean symphony', price: '£11.50', note: 'Rich black bean sauce with bell pepper, mushroom and onion' },
+          { code: 'S4', name: 'Szechuan spice prawn', price: '£11.50', heat: 2, note: 'Bell pepper, onion, chilli and bamboo shoot in Szechuan sauce' },
+          { code: 'S5', name: 'Seafood Pok Choy delight', price: '£11.50', note: 'Mixed seafood with pok choy and celery in light soya sauce' },
+          { code: 'S6', name: 'Prawn in satay sauce', price: '£11.50', heat: 1, nuts: true, note: 'Onion, bell pepper, mushroom in satay sauce' },
+          { code: 'S7', name: 'Cashew nut prawn', price: '£11.50', nuts: true, note: 'Onion, bell pepper, broccoli, water chestnut, celery' },
+          { code: 'S8', name: 'Scallop temptation', price: '£11.50', note: 'Grilled scallops served with vermicelli, topped with oyster sauce' },
+          { code: 'S9', name: 'Sweet & sour fish', price: '£10.50', note: 'Sweet & sour with a twist of Oriental spices · onion, pineapple, carrot, zucchini, bell pepper' },
+          { code: 'S10', name: 'Grilled sea bass with coconut curry sauce', price: '£11.50', note: 'Grilled sea bass, coconut curry sauce, lemon leaves' },
+          { code: 'S16', name: 'Fire & Wok prawn curry', price: '£11.50', heat: 1, note: 'Fragrant blend of rich spices with mushroom, onion and green peas' },
+          { code: 'S17', name: 'Prawn in coconut curry sauce', price: '£11.50', note: 'Bell pepper, mushroom, onion' },
         ],
       },
     ],
@@ -129,11 +225,14 @@ const MENU: Record<string, { label: string; categories: MenuCategory[] }> = {
       {
         title: 'Aromatic & Roasted Duck',
         items: [
-          { name: 'Aromatic crispy duck (quarter)', price: '£14.50', note: 'pancakes, scallion, hoisin' },
-          { name: 'Aromatic crispy duck (half)', price: '£26.50' },
-          { name: 'Duck with plum sauce', price: '£13.50' },
-          { name: 'Duck with black bean sauce', price: '£13.50' },
-          { name: 'Roast duck Cantonese', price: '£13.50' },
+          { code: 'D1', name: 'Aromatic shredded duck with pancakes (quarter)', price: '£14.00', note: 'Served with finely chopped cucumber, scallion and hoisin sauce' },
+          { code: 'D2', name: 'Aromatic shredded duck with pancakes (half)', price: '£26.00', note: 'Served with finely chopped cucumber, scallion and hoisin sauce' },
+          { code: 'D1A', name: 'Extra pancakes', price: '£3.00', note: '6 pieces' },
+          { code: 'D3', name: 'Roast duck with black bean symphony', price: '£9.50', note: 'Rich black bean sauce with bell pepper, mushroom and onion' },
+          { code: 'D4', name: 'Roast duck in plum sauce', price: '£9.50' },
+          { code: 'D5', name: 'Roast duck in Peking sauce', price: '£9.50' },
+          { code: 'D6', name: 'Roast duck with seasonal vegetables', price: '£9.50' },
+          { code: 'D7', name: 'Roast duck in honey sauce', price: '£9.50' },
         ],
       },
     ],
@@ -144,12 +243,16 @@ const MENU: Record<string, { label: string; categories: MenuCategory[] }> = {
       {
         title: 'Vegetables & Vegan',
         items: [
-          { name: 'Buddha delight', price: '£10.00', veg: true },
-          { name: 'Sweet & sour bean curd', price: '£9.50', veg: true },
-          { name: 'Kung Pao bean curd blaze', price: '£9.50', veg: true, note: 'spicy' },
-          { name: 'Mapo tofu', price: '£9.50', veg: true, note: 'spicy' },
-          { name: 'Stir-fry mixed vegetables', price: '£8.50', veg: true },
-          { name: 'Pak choi with garlic', price: '£8.50', veg: true },
+          { code: 'VD', name: 'Buddha delight', price: '£10.00', veg: true, note: 'Vermicelli, broccoli, mushroom, baby sweetcorn, carrot, beans, snow peas, celery, water chestnut, Chinese cabbage' },
+          { code: 'V1', name: 'Sweet & sour harmony bean curd', price: '£9.50', veg: true, note: 'Sweet & sour with a twist of Oriental spices · onion, pineapple, carrot, zucchini, bell pepper' },
+          { code: 'V2', name: 'Kung Pao bean curd blaze', price: '£9.50', veg: true, heat: 1, nuts: true, note: 'Peanuts, dry chillies, bell pepper, onion, zucchini, black fungus in Kung Pao sauce' },
+          { code: 'V3', name: 'Bean curd in black bean symphony', price: '£9.50', veg: true, note: 'Rich black bean sauce with bell pepper, mushroom and onion' },
+          { code: 'V4', name: 'Szechuan spice bean curd', price: '£9.50', veg: true, heat: 2, note: 'Bell pepper, onion, chilli and bamboo shoot in Szechuan sauce' },
+          { code: 'V5', name: 'Pok Choy delight', price: '£9.50', veg: true, note: 'Pok choy and celery in light soya sauce' },
+          { code: 'V6', name: 'Stir-fry mixed vegetables', price: '£8.50', veg: true, note: 'Broccoli, carrot, celery, mushroom, snow peas, baby sweetcorn' },
+          { code: 'V7', name: 'Bean curd in satay sauce', price: '£8.50', veg: true, heat: 1, nuts: true, note: 'Onion, bell pepper, mushroom in satay sauce' },
+          { code: 'V8', name: 'Stir-fried long beans with garlic sauce', price: '£7.50', veg: true },
+          { code: 'V16', name: 'Fire & Wok mixed vegetable curry', price: '£9.50', veg: true, heat: 1, note: 'Seasonal mixed vegetables in a fragrant blend of rich spices' },
         ],
       },
     ],
@@ -159,12 +262,16 @@ const MENU: Record<string, { label: string; categories: MenuCategory[] }> = {
     categories: [
       {
         title: 'Rice',
+        note: 'Fried rice is cooked with egg',
         items: [
-          { name: 'Steamed jasmine rice', price: '£3.50', veg: true },
-          { name: 'Egg fried rice', price: '£4.50' },
-          { name: 'Vegetable fried rice', price: '£6.50', veg: true },
-          { name: 'Special fried rice', price: '£8.50' },
-          { name: 'Yeung Chow fried rice', price: '£8.50' },
+          { code: 'R1', name: 'Steamed rice', price: '£4.00', veg: true },
+          { code: 'R2', name: 'Fried rice with mixed vegetables', price: '£5.50', veg: true, note: 'Peas, beans, carrot' },
+          { code: 'R3', name: 'Egg fried rice', price: '£5.50', veg: true },
+          { code: 'R4', name: 'Chicken fried rice', price: '£7.50' },
+          { code: 'R5', name: 'Char-siu pork fried rice', price: '£7.50' },
+          { code: 'R6', name: 'Prawn fried rice', price: '£9.00' },
+          { code: 'R7', name: 'Fire & Wok special fried rice', price: '£9.50', note: 'Egg, pork, prawn, chicken, green peas' },
+          { code: 'R8', name: 'Singapore fried rice', price: '£9.50', heat: 1, note: 'Egg, pork, prawn, chicken' },
         ],
       },
     ],
@@ -173,21 +280,126 @@ const MENU: Record<string, { label: string; categories: MenuCategory[] }> = {
     label: 'Noodles',
     categories: [
       {
-        title: 'Stir-fry Noodles',
+        title: 'Stir-fried Noodles',
+        note: 'With beansprouts, onion & carrot',
         items: [
-          { name: 'Plain chow mein', price: '£6.50', veg: true },
-          { name: 'Vegetable chow mein', price: '£7.50', veg: true },
-          { name: 'Chicken chow mein', price: '£8.50' },
-          { name: 'Beef chow mein', price: '£8.50' },
-          { name: 'Singapore chow mein', price: '£10.00', note: 'spicy' },
-          { name: 'Fire & Wok special chow mein', price: '£10.00', note: 'house favourite' },
+          { code: 'N1', name: 'Plain chow mein', price: '£6.50', veg: true },
+          { code: 'N2', name: 'Chicken chow mein', price: '£8.50' },
+          { code: 'N3', name: 'Beef chow mein', price: '£9.00' },
+          { code: 'N4', name: 'Vegetable chow mein', price: '£8.00', veg: true, note: 'Seasonal vegetables' },
+          { code: 'N5', name: 'Egg chow mein', price: '£7.50', veg: true },
+          { code: 'N6', name: 'Shrimp chow mein', price: '£9.50' },
+          { code: 'N7', name: 'Fire & Wok special chow mein', price: '£10.00', note: 'Egg, pork, shrimp, chicken' },
+          { code: 'N9', name: 'Singapore chow mein', price: '£10.00', heat: 1, note: 'Egg, pork, shrimp, chicken' },
+          { code: 'N10', name: 'Duck chow mein', price: '£9.50' },
+        ],
+      },
+    ],
+  },
+  glutenFree: {
+    label: 'Gluten Free',
+    categories: [
+      {
+        title: 'Gluten Free – Appetisers',
+        note: 'All dishes on this menu are prepared gluten free',
+        items: [
+          { name: 'Chicken salt & pepper', price: '£7.50', heat: 1 },
+          { name: 'Smoked shredded chicken', price: '£7.50' },
+          { name: 'Pork belly', price: '£8.90' },
+          { name: 'Salt & pepper prawn', price: '£8.50', heat: 1 },
+          { name: 'Salt & pepper tofu', price: '£7.50', veg: true, heat: 2 },
+          { name: 'Crispy seaweed', price: '£5.50', veg: true },
+          { name: 'Sweet & sour chilli chicken', price: '£6.50', heat: 2 },
+          { name: 'Sweet & sour chilli wings', price: '£6.50', heat: 2 },
+          { name: 'Sweet & sour chilli prawn', price: '£8.90', heat: 2 },
+          { name: 'Sweet & sour chilli fish', price: '£8.50', heat: 2 },
+        ],
+      },
+      {
+        title: 'Gluten Free – Poultry',
+        items: [
+          { code: 'GFC1', name: 'Sweet & sour harmony chicken', price: '£9.50', note: 'Sweet & sour with a twist of Oriental spices · onion, pineapple, carrot, zucchini, bell pepper' },
+          { code: 'GFC3', name: 'Chicken with black bean symphony', price: '£9.50', note: 'Rich black bean sauce with bell pepper, mushroom and onion' },
+          { code: 'GFC5', name: 'Chicken Pok Choy delight', price: '£9.50', note: 'Pok choy and celery in light soya sauce' },
+          { code: 'GFC10', name: 'Chicken black pepper charm', price: '£9.50', heat: 1, note: 'Black pepper, onion, bell pepper, celery' },
+        ],
+      },
+      {
+        title: 'Gluten Free – Beef',
+        items: [
+          { code: 'GFB3', name: 'Beef with black bean symphony', price: '£10.50', note: 'Rich black bean sauce with bell pepper, mushroom and onion' },
+          { code: 'GFB5', name: 'Beef Pok Choy delight', price: '£10.50', note: 'Pok choy and celery in light soya sauce' },
+          { code: 'GFB11', name: 'Black pepper beef charm', price: '£10.50', heat: 1, note: 'Tender beef, black pepper, onion, bell pepper' },
+          { code: 'GFB14', name: 'Scallion beef steak', price: '£10.50', note: 'Stir-fried with ginger, onion, celery and scallion' },
+        ],
+      },
+      {
+        title: 'Gluten Free – Pork',
+        items: [
+          { code: 'GFP5', name: 'Pork Pok Choy delight', price: '£9.50', note: 'Pok choy and celery in light soya sauce' },
+        ],
+      },
+      {
+        title: 'Gluten Free – Seafood',
+        items: [
+          { code: 'GFS1', name: 'Sweet & sour harmony prawn', price: '£11.50', note: 'Sweet & sour with a twist of Oriental spices · onion, pineapple, carrot, zucchini, bell pepper' },
+          { code: 'GFS3', name: 'Mussels with black bean symphony', price: '£11.50', note: 'Rich black bean sauce with bell pepper, mushroom and onion' },
+          { code: 'GFS5', name: 'Seafood Pok Choy delight', price: '£11.50', note: 'Mixed seafood with pok choy and celery in light soya sauce' },
+          { code: 'GFS9', name: 'Sweet & sour harmony fish', price: '£9.50', note: 'Sweet & sour with a twist of Oriental spices · onion, pineapple, carrot, zucchini, bell pepper' },
+        ],
+      },
+      {
+        title: 'Gluten Free – Duck',
+        items: [
+          { code: 'GFD4', name: 'Roast duck in plum sauce', price: '£9.50' },
+        ],
+      },
+      {
+        title: 'Gluten Free – Vegetables',
+        items: [
+          { code: 'GFV1', name: 'Sweet & sour harmony bean curd', price: '£9.50', veg: true, note: 'Sweet & sour with a twist of Oriental spices · onion, pineapple, carrot, zucchini, bell pepper' },
+          { code: 'GFV3', name: 'Bean curd in black bean symphony', price: '£8.50', veg: true, note: 'Rich black bean sauce with bell pepper, mushroom and onion' },
+        ],
+      },
+      {
+        title: 'Gluten Free – Rice',
+        items: [
+          { name: 'Steamed rice', price: '£4.00', veg: true },
+          { name: 'Vegetable fried rice', price: '£5.50', veg: true, note: 'Seasonal vegetables' },
+          { name: 'Egg fried rice', price: '£5.50', veg: true },
+          { name: 'Chicken fried rice', price: '£7.50' },
+          { name: 'Shrimp fried rice', price: '£9.00' },
+        ],
+      },
+      {
+        title: 'Gluten Free – Vermicelli Chow Mein',
+        note: 'With beansprouts, onion & carrot',
+        items: [
+          { name: 'Vegetable vermicelli chow mein', price: '£8.00', veg: true, note: 'Seasonal vegetables' },
+          { name: 'Egg vermicelli chow mein', price: '£7.50', veg: true },
+          { name: 'Chicken vermicelli chow mein', price: '£8.50' },
+          { name: 'Beef vermicelli chow mein', price: '£9.00' },
+          { name: 'Shrimp vermicelli chow mein', price: '£9.50' },
+        ],
+      },
+    ],
+  },
+  extras: {
+    label: 'Extras',
+    categories: [
+      {
+        title: 'Extras',
+        items: [
+          { name: 'Chicken nuggets and chips', price: '£8.50' },
+          { name: 'Chips', price: '£3.50', veg: true },
+          { name: 'Curry sauce', price: '£2.50' },
         ],
       },
     ],
   },
 };
 
-const TAB_ORDER = ['starters', 'poultry', 'beef', 'pork', 'seafood', 'duck', 'vegan', 'rice', 'noodles'];
+const TAB_ORDER = ['starters', 'poultry', 'beef', 'pork', 'seafood', 'duck', 'vegan', 'rice', 'noodles', 'glutenFree', 'extras'];
 
 // =============== BOOKING CONTEXT ===============
 const BookingContext = createContext<{ open: () => void }>({ open: () => {} });
@@ -650,7 +862,7 @@ function FullMenu() {
         <div className="fw-head">
           <span className="fw-eyebrow"><UtensilsCrossed size={14} /> The Menu</span>
           <h2>Explore Every Flavour</h2>
-          <p>Browse our authentic dishes — from sizzling poultry and slow-roasted duck to bold seafood and vegan delights.</p>
+          <p>Browse our authentic dishes — from sizzling poultry and slow-roasted duck to bold seafood, vegan delights and a dedicated gluten-free menu.</p>
         </div>
 
         <div className="fw-menu__tabs-wrap">
@@ -679,14 +891,31 @@ function FullMenu() {
             transition={{ duration: 0.25 }}
           >
             {current.categories.map((cat) => (
-              <div key={cat.title}>
+              <div key={cat.title} className="fw-menu__category">
                 <div className="fw-menu__category-title">{cat.title}</div>
+                {cat.note && <p className="fw-menu__category-note">{cat.note}</p>}
                 <div className="fw-menu__list">
                   {cat.items.map((item) => (
-                    <div className="fw-menu__item" key={item.name}>
+                    <div className="fw-menu__item" key={`${item.code ?? ''}-${item.name}`}>
                       <div className="fw-menu__item-name">
+                        {item.code && <span className="fw-menu__code">{item.code}</span>}
                         {item.name}
                         {item.veg && <span className="fw-menu__veg">V</span>}
+                        {item.heat && (
+                          <span
+                            className="fw-menu__heat"
+                            role="img"
+                            aria-label={item.heat === 2 ? 'hot' : 'mild'}
+                            title={item.heat === 2 ? 'Hot (II)' : 'Mild (I)'}
+                          >
+                            {Array.from({ length: item.heat }, (_, i) => (
+                              <Flame size={13} key={i} aria-hidden="true" />
+                            ))}
+                          </span>
+                        )}
+                        {item.nuts && (
+                          <span className="fw-menu__nuts" title="Contains nuts" aria-label="contains nuts">N</span>
+                        )}
                         {item.note && <small>{item.note}</small>}
                       </div>
                       <div className="fw-menu__dots" />
@@ -700,7 +929,9 @@ function FullMenu() {
         </AnimatePresence>
 
         <p className="fw-menu__allergy">
-          ⚠ Please tell our team about any food allergies before ordering. (V) = Vegetarian / Vegan friendly.
+          ⚠ Please tell our team about any food allergies before ordering.
+          V = vegetarian · one flame = mild (I), two flames = hot (II) · N = contains nuts.
+          Gluten-free dishes are listed under the Gluten Free tab.
         </p>
       </div>
     </section>
