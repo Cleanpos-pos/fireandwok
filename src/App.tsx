@@ -24,17 +24,24 @@ const PHONE = '+441733813001';
 const PHONE_LABEL = '+44 1733 813001';
 const ADDRESS = '36 Cowgate, Peterborough PE1 1NA';
 
-type GalleryImage = { src: string; tag: string; alt: string; w: number; h: number };
+type TileSize = 'xl' | 'wide' | 'tall';
+type GalleryImage = { src: string; tag: string; alt: string; w: number; h: number; size?: TileSize };
 const GALLERY: GalleryImage[] = [
-  { src: '/img/gallery/faw-1.jpg',    tag: 'The Dining Room',  alt: 'Fire & Wok Peterborough dining room with wok-fired dishes on the table',           w: 1600, h: 1200 },
+  { src: '/img/gallery/faw-1.jpg',    tag: 'The Dining Room',  alt: 'Fire & Wok Peterborough dining room with wok-fired dishes on the table',           w: 1600, h: 1200, size: 'xl' },
   { src: '/img/gallery/photo-23.jpg', tag: 'Wok Stir-Fry',     alt: 'Wok-fired Chinese stir-fry dish at Fire & Wok Peterborough',                        w: 1200, h: 1600 },
   { src: '/img/gallery/photo-22.jpg', tag: 'Chef Special',     alt: 'Chef special main course plated at Fire & Wok',                                     w: 1200, h: 1600 },
-  { src: '/img/gallery/photo-21.jpg', tag: 'Aromatic Duck',    alt: 'Aromatic crispy duck served with pancakes and hoisin at Fire & Wok',                w: 1200, h: 1600 },
+  { src: '/img/gallery/photo-21.jpg', tag: 'Aromatic Duck',    alt: 'Aromatic crispy duck served with pancakes and hoisin at Fire & Wok',                w: 1200, h: 1600, size: 'tall' },
   { src: '/img/gallery/photo-24.jpg', tag: 'Sizzling Plate',   alt: 'Sizzling plate Chinese main dish at Fire & Wok Peterborough',                       w: 1600, h: 1200 },
   { src: '/img/gallery/photo-28.jpg', tag: 'House Favourite',  alt: 'House favourite Cantonese dish at Fire & Wok',                                      w: 1200, h: 1600 },
-  { src: '/img/gallery/photo-27.jpg', tag: 'Sweet & Sour',     alt: 'Sweet and sour chicken at Fire & Wok Peterborough',                                 w: 1200, h: 1600 },
+  { src: '/img/gallery/photo-27.jpg', tag: 'Sweet & Sour',     alt: 'Sweet and sour chicken at Fire & Wok Peterborough',                                 w: 1200, h: 1600, size: 'wide' },
   { src: '/img/gallery/photo-26.jpg', tag: 'Salt & Pepper',    alt: 'Salt and pepper dish at Fire & Wok Peterborough',                                   w: 1200, h: 1600 },
   { src: '/img/gallery/photo-25.jpg', tag: 'Hand-tossed',      alt: 'Hand-tossed wok noodles at Fire & Wok Peterborough',                                w: 1200, h: 1600 },
+  // New dishes (Nov 2026). Tiles without a `size` render as a regular 1x1 cell.
+  { src: '/img/gallery/dish-ribs.jpg',       tag: 'Spare Ribs',        alt: 'Glazed spare ribs with spring onion garnish at Fire & Wok Peterborough',      w: 1200, h: 1600, size: 'tall' },
+  { src: '/img/gallery/dish-roast-duck.jpg', tag: 'Roast Duck',        alt: 'Sliced roast duck in sauce with spring onion at Fire & Wok Peterborough',     w: 1200, h: 1600 },
+  { src: '/img/gallery/dish-platter.jpg',    tag: 'Appetiser Platter', alt: 'Mixed appetiser platters with satay skewers, prawn toast, ribs and crispy seaweed at Fire & Wok', w: 576, h: 1024 },
+  { src: '/img/gallery/dish-chilli.jpg',     tag: 'Chilli & Spring Onion', alt: 'Crispy chilli dish finished with spring onion at Fire & Wok Peterborough', w: 576, h: 1024 },
+  { src: '/img/gallery/dish-steamers.jpg',   tag: 'Bamboo Steamers',   alt: 'Bamboo steamers lined up on the pass at Fire & Wok Peterborough',             w: 576, h: 1024 },
 ];
 
 type MenuItem = {
@@ -701,17 +708,7 @@ function Gallery() {
     };
   }, [active, close, next, prev]);
 
-  const sized: { i: number; cls: string }[] = useMemo(() => ([
-    { i: 0, cls: 'fw-gallery__tile fw-gallery__tile--xl' },
-    { i: 1, cls: 'fw-gallery__tile' },
-    { i: 2, cls: 'fw-gallery__tile' },
-    { i: 3, cls: 'fw-gallery__tile fw-gallery__tile--tall' },
-    { i: 4, cls: 'fw-gallery__tile' },
-    { i: 5, cls: 'fw-gallery__tile' },
-    { i: 6, cls: 'fw-gallery__tile fw-gallery__tile--wide' },
-    { i: 7, cls: 'fw-gallery__tile' },
-    { i: 8, cls: 'fw-gallery__tile' },
-  ]), []);
+  const tileClass = (size?: TileSize) => `fw-gallery__tile${size ? ` fw-gallery__tile--${size}` : ''}`;
 
   return (
     <section className="fw-section fw-gallery" id="gallery">
@@ -726,10 +723,10 @@ function Gallery() {
         </div>
 
         <div className="fw-gallery__grid">
-          {sized.map(({ i, cls }) => (
+          {GALLERY.map((img, i) => (
             <button
-              key={i}
-              className={cls}
+              key={img.src}
+              className={tileClass(img.size)}
               onClick={() => open(i)}
               aria-label={`Open ${GALLERY[i].tag}`}
               type="button"
