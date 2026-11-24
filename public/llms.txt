@@ -22,7 +22,7 @@ Fire & Wok specialises in wok-fired Cantonese and Szechuan cuisine — aromatic 
 - [Visit / Contact](https://www.fireandwok.co.uk/#contact): Address, phone, hours, embedded map.
 
 ## Order & Book
-- [Order Chinese delivery online](https://fireandwok.order2go.co.uk): Direct delivery and collection ordering.
+- [Order Chinese delivery online](https://www.restaurantlogin.com/api/fb/6g_r84): Direct delivery and collection ordering.
 - [Book a table (TheFork)](https://widget.thefork.com/en-GB/37915f72-6dfa-48bc-a099-6cdce51d865a): Instant reservation widget.
 
 ## Signature Dishes
