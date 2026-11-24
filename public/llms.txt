@@ -2,7 +2,7 @@
 
 > Authentic Chinese restaurant and takeaway in the heart of Peterborough city centre at 36 Cowgate, PE1 1NA. Dine-in, collection and delivery, open daily 12:00–22:00.
 
-Fire & Wok specialises in wok-fired Cantonese and Szechuan cuisine — aromatic shredded duck, salt & pepper dishes, hand-tossed chow mein and a 3-course signature set menu (£31 per person, minimum 2 people). A dedicated gluten-free menu is available. Reservations via the online booking page; delivery and collection orders via the online ordering portal.
+Fire & Wok specialises in wok-fired Cantonese and Szechuan cuisine — aromatic shredded duck, salt & pepper dishes, hand-tossed chow mein and a 3-course signature set menu (£31 per person, minimum 2 people). A dedicated gluten-free menu is available. Reservations via TheFork; delivery and collection orders via the online ordering portal.
 
 ## Visit & Contact
 - Address: 36 Cowgate, Peterborough, Cambridgeshire PE1 1NA, United Kingdom
@@ -23,7 +23,7 @@ Fire & Wok specialises in wok-fired Cantonese and Szechuan cuisine — aromatic 
 
 ## Order & Book
 - [Order Chinese delivery online](https://fireandwok.order2go.co.uk): Direct delivery and collection ordering.
-- [Book a table](https://fireandwok.order2go.co.uk/book): Online table booking.
+- [Book a table (TheFork)](https://widget.thefork.com/en-GB/37915f72-6dfa-48bc-a099-6cdce51d865a): Instant reservation widget.
 
 ## Signature Dishes
 - Aromatic Shredded Duck with pancakes (quarter £14.00, half £26.00) with cucumber, scallion, hoisin
