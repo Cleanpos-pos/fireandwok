@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 
 // =============== CONSTANTS ===============
-const ORDER_URL = 'https://fireandwok.order2go.co.uk';
+const ORDER_URL = 'https://www.restaurantlogin.com/api/fb/6g_r84';
 const BOOK_URL = 'https://widget.thefork.com/en-GB/37915f72-6dfa-48bc-a099-6cdce51d865a';
 const PHONE = '+441733813001';
 const PHONE_LABEL = '+44 1733 813001';
