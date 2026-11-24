@@ -18,8 +18,8 @@ import {
 } from 'lucide-react';
 
 // =============== CONSTANTS ===============
-const ORDER_URL = 'https://www.restaurantlogin.com/api/fb/6g_r84';
-const BOOK_URL = 'https://widget.thefork.com/en-GB/37915f72-6dfa-48bc-a099-6cdce51d865a';
+const ORDER_URL = 'https://fireandwok.order2go.co.uk';
+const BOOK_URL = 'https://fireandwok.order2go.co.uk/book';
 const PHONE = '+441733813001';
 const PHONE_LABEL = '+44 1733 813001';
 const ADDRESS = '36 Cowgate, Peterborough PE1 1NA';
@@ -464,11 +464,11 @@ function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
               {!loaded && (
                 <div className="fw-modal__loading" aria-hidden="true">
                   <div className="fw-modal__loading-spinner" />
-                  <span>Loading reservation widget…</span>
+                  <span>Loading booking page…</span>
                 </div>
               )}
               <iframe
-                title="TheFork reservation widget for Fire & Wok"
+                title="Table booking for Fire & Wok"
                 src={BOOK_URL}
                 onLoad={() => setLoaded(true)}
                 allow="payment"
@@ -476,7 +476,7 @@ function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
               />
             </div>
             <div className="fw-modal__foot">
-              <span>Powered by TheFork · Reservations confirmed instantly.</span>
+              <span>Book online in a few taps.</span>
               <span>
                 Prefer to call?{' '}
                 <a href={`tel:${PHONE}`}>{PHONE_LABEL}</a>
